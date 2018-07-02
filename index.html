@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css">
+  <title>Exercice 1</title>
+</head>
+<body>
+  <form id="game">
+    <ul>
+      <li>
+        <input type="radio" name="userShifumi" id="rock" value="0"/><label for="rock">pierre</label>
+      </li>
+      <li>
+        <input type="radio" name="userShifumi" id="paper" value="1"/><label for="paper">feuille</label>
+      </li>
+      <li>
+        <input type="radio" name="userShifumi" id="scissors" value="2"/><label for="scissors">ciseaux</label>
+      </li>
+    </ul>
+    <button type="button" name="button" id="shifumi">Shifumi!</button>
+  </form>
+  <div id="victory"></div>
+  <div id="lose"></div>
+  <div id="percentVictory"></div>
+  <div id="counter"></div>
+  <script src="jquery-3.2.1.js"></script>
+  <script>
+  $('#shifumi').click(function(){
+    var computerChoice = [Math.floor(Math.random()*3)];
+    var userChoice = parseInt($('input[name=userShifumi]:checked', '#game').val());
+    if (computerChoice == userChoice){
+      alert('match nul');
+    }else if (userChoice == 0 && computerChoice == 2 || userChoice == 1 && computerChoice == 0 || userChoice == 2 && computerChoice == 1){
+      alert('Victoire');
+    }else{
+      alert('Défaite');
+    }
+  });
+</script>
+</body>
+</html>
