@@ -6,7 +6,7 @@
   <title>Exercice 1</title>
 </head>
 <body>
-  <form id="game">
+<!--  <form id="game">
     <ul>
       <li>
         <input type="radio" name="userShifumi" id="rock" value="0"/><label for="rock">pierre</label>
@@ -24,10 +24,19 @@
   <div id="lose"></div>
   <div id="percentVictory"></div>
   <div id="counter"></div>
+-->
+<select id="userChoice">
+  <option value="0">Pierre</option>
+  <option value="1">Papier</option>
+  <option value="2">Ciseaux</option>
+</select>
+<button type="button" id="shifumi">Shifumi!</button>
+
   <script src="jquery-3.2.1.js"></script>
   <script>
+  /*
   $('#shifumi').click(function(){
-    var computerChoice = [Math.floor(Math.random()*3)];
+    var computerChoice = Math.floor(Math.random()*3);
     var userChoice = parseInt($('input[name=userShifumi]:checked', '#game').val());
     if (computerChoice == userChoice){
       alert('match nul');
@@ -36,6 +45,42 @@
     }else{
       alert('Défaite');
     }
+  });
+  */
+  $(function(){
+    var computerChoiceList = ['Pierre', 'Papier', 'Ciseaux'];
+    var counter = 0;
+    var victory = 0;
+    var defeat = 0;
+    var equality =0;
+    $('#shifumi').click(function(){
+      counter ++;
+    var computerChoice = Math.floor(Math.random()*3);
+    var userChoice = $('#userChoice').val();
+    if (userChoice == 0 && computerChoice ==2){
+      victory ++;
+      alert ('computer a choisi '+ computerChoiceList[computerChoice]);
+      alert ('user a gagné');
+    }else if (computerChoice == 0 && userChoice ==2){
+      defeat ++;
+      alert ('computer a choisi '+ computerChoiceList[computerChoice]);
+      alert ('computer a gagné');
+    }else if(userChoice > computerChoice){
+      victory ++;
+      alert ('computer a choisi '+ computerChoiceList[computerChoice]);
+      alert ('user a gagné');
+    }else if (computerChoice > userChoice){
+      defeat ++;
+      alert ('computer a choisi '+ computerChoiceList[computerChoice]);
+      alert ('computer a gagné');
+    }else{
+      equality ++;
+      alert ('computer a choisi '+ computerChoiceList[computerChoice]);
+      alert ('égalité');
+    }
+    var calcul = Math.trunc((victory/counter)*100);
+    alert ('Vous avez gagné ' + calcul + '% des parties');
+    });
   });
 </script>
 </body>
